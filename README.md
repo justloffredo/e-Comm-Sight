@@ -1,46 +1,45 @@
-# NYCDA React / Webpack Template
+## Goals
 
-This template allows you to very quickly spin up a React application that's
-equipped with Webpack for builds. It provides the following features:
+* Develop the front-end of an e-commerce website using React.js
+* Create a Database of User Accounts
+	A User should be able to:
+  	* See a list of all the products on the page (including featured products at the top)
+  	* Navigate to a page for any of the products that displays the product's
+  	  ** Name
+      ** Images
+      ** Price
+      ** Description
+      ** Add to cart button
+    * Add multiple products to their cart
+    * Be able to navigate to their cart where you can see:
+      ** A list of all the products added with name, picture, and price
+      ** A subtotal of the price of all the products
+    * Checkout via a checkout form which will include the following delivery information:
+      ** Full name
+      ** Street address
+      ** City
+      ** State
+      ** Zipcode
 
-* ES2017 and JSX using Babel
-* Style components using SASS
-* Asset resolving via file loader for JS and CSS
-* Image compression using image-webpack-loader
-* Hot module replacement with Webpack Dev Server
-* Source maps in development and production
-* A standard minified production build
+## Pages
 
-## Getting Started
+  * Home Page (Splash page of what the store sells)
+  * About Page(?) (Description of what the company is all about)
+  * Gallery Page (Displays a gallery of all the products being sold)
+  * Product Page (Page for each specific product)
+  * Cart Page (Displays all the items in the user's cart with the subtotal)
+  * Checkout Page (Page of a form with inputs for address)
+  * Contact Page
+  * Error Page (404)
 
-You must be on a Node version greater than 6 to use this. Once you've npm
-installed, there are only two commands:
+## Components  
 
-* `npm run start` - Runs the development server (Specify port with PORT, default 3000)
-* `npm run build` - Builds the production version, which goes into `dist`
+  * checkoutForm (props include : onSubmit event)
+  * shoppingCart (props include : products)
+  * galleryList (props include: products)
+  * product (props include: product)
 
-Once you start building things with this template, you may want to remove the
-`.placeholder` files in `src/assets/fonts`, `src/assets/images`, and
-`src/components` folders. They were added just to check in those directories.
+## Inspiration
 
-## Project Structure
-
-```
-.
-├── src                # Source code, including raw assets
-│   ├── App.jsx        ### The top-level component for React
-│   ├── App.scss       ### Any general, non-component styling done here
-│   ├── assets         ### Static assets
-│   │   ├── fonts      ##### Fonts(eot|otf|ttf|woff|woff2)
-│   │   └── images     ##### Images (gif|png|jpe?g|svg|ico)
-│   ├── components     ### Any shared components
-│   ├── index.ejs      ### HTML template for the app
-│   └── index.js       ### Webpack entry point / component mounting
-├── dist               # Any built files are here, not checked in
-└── webpack.config.js  # Webpack configuration for dev _and_ production
-```
-
-## License
-
-This is available under the MIT License. Any distributions of it must also carry
-this license.
+* Whalebone Shop (https://shopwhalebone.com/)
+* Seavees (https://www.seavees.com/)
