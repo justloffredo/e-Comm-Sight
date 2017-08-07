@@ -5,7 +5,7 @@ import Navigation from "components/Navigation";
 import Home from "pages/Home";
 import About from "pages/About";
 import Gallery from "pages/Gallery";
-import Product from "pages/Product";
+import Item from "pages/Item";
 import Cart from "pages/Cart";
 import Checkout from "pages/Checkout";
 import Contact from "pages/Contact";
@@ -23,7 +23,7 @@ class App extends React.Component {
 						<Route exact path ="/" component = {Home}/>
 						<Route exact path = "/about" component = {About}/>
 						<Route exact path = "/gallery" component = {Gallery}/>
-						<Route exact path = "/product" component = {Product}/>
+						<Route exact path = "/item/:itemId" component = {Item}/>
 						<Route exact path = "/cart" component = {Cart}/>
 						<Route exact path = "/checkout" component = {Checkout}/>
 						<Route exact path = "/contact" component = {Contact}/>

@@ -1,15 +1,14 @@
 import "./Navigation.scss";
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
+import { NavLink, Link } from "react-router-dom";
+
 
 
 
 class Navigation extends Component {
 	render() {
 		const links = [{
-			to: "/",
-			text: "HOME",
-		}, {
 			to: "/about",
 			text: "ABOUT",
 		},	{
@@ -24,20 +23,30 @@ class Navigation extends Component {
 		}];
 
 		return (
-			<nav className = "Nav">
-				{links.map((link) => {
-					return (
-						<NavLink
-							key= {link.to}
-							to= {link.to}
-							className= "Nav-link"
-							activeClassName= "is-active"
-							exact>
-							{link.text}
-						</NavLink>
-					);
-				})}
-			</nav>
+			< Menu >
+				< Menu.Menu>
+					<Menu.Item position="left">
+						<Link to="/" className="Nav-Link-Home" activeClassName= "is-active">
+							ODYSSEY TIME
+						</Link>
+					</Menu.Item>
+				</Menu.Menu>
+				< Menu.Menu position= "right">
+					{links.map((link) => {
+						return (
+							<Menu.Item>
+								<NavLink
+									key= {link.to}
+									to= {link.to}
+									className= "Nav-link"
+									activeClassName= "is-active">
+									{link.text}
+								</NavLink>
+							</Menu.Item>
+						);
+					})}
+				</Menu.Menu>
+			</Menu>
 		);
 	}
 }
