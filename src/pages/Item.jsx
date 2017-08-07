@@ -1,5 +1,5 @@
 import "./item.scss";
-import { Grid } from "semantic-ui-react";
+import { Grid, List } from "semantic-ui-react";
 import React, { Component } from "react";
 import PRODUCTS from "json/products.json";
 
@@ -25,6 +25,17 @@ class Item extends Component {
 						</div>
 						<div className="item-description">
 							<p>{item.description}</p>
+						</div>
+						<div className="item-specs">
+							<List horizontal>
+							{item.specs.map((specs) => {
+								return [
+									<List.Item> {specs.label}:</List.Item>,
+									<List.Item> {specs.value}</List.Item>,
+								];
+							}
+						)}
+						</List>
 						</div>
 					</div>
 				</Grid.Column>
