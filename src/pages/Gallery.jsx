@@ -1,19 +1,20 @@
 import "./gallery.scss";
-import { Grid } from "semantic-ui-react";
+import { Grid, Item, Rating } from "semantic-ui-react";
 import React, { Component } from "react";
-import PRODUCTS from "json/products.json";
 import { Link } from "react-router-dom";
 
 class Gallery extends Component {
 	render() {
+		const { products } = this.props;
+		console.log(products);
 		return (
-			<Grid relaxed columns={2}>
-    		<Grid.Column>
+			<Grid centered>
+    		<Grid.Column width={12}>
 					<div className = "Gallery">
-						{PRODUCTS.map((product, index) => {
+						{products.map((product, index) => {
 							return [
 								<div className = "gallery-item">
-									<Link to= {`/item/${index}`}>
+									<Link to= {`/product/${index}`}>
 										<h3 className = "gallery-name"> {product.name}</h3>
 									</Link>
 										 <img className= "gallery-image-main" src= {product.images[0].large}/>

@@ -38,8 +38,7 @@ rules.push({
 	use: [{
 		loader: "file-loader",
 		options: {
-			name: "[name].[ext]?[hash:8]",
-			useRelativePath: true,
+			name: "[path][name].[ext]?[hash:8]",
 		},
 	}, {
 		loader: "image-webpack-loader",
@@ -52,8 +51,7 @@ rules.push({
 	use: {
 		loader: "file-loader",
 		options: {
-			name: "[name].[ext]?[hash:8]",
-			useRelativePath: true,
+			name: "[path][name].[ext]?[hash:8]",
 		},
 	},
 });
@@ -113,6 +111,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "app.[hash:8].js",
+		publicPath: "/",
 	},
 	resolve: {
 		modules: ["node_modules", path.resolve(__dirname, "src")],
@@ -122,7 +121,7 @@ module.exports = {
 		rules,
 	},
 	plugins,
-	devtool: IS_DEV ? "eval-source-map" : "source-map",
+	devtool: "source-map",
 	devServer: {
 		port: process.env.PORT || 3000,
 		hot: true,

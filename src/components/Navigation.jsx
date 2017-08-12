@@ -13,7 +13,7 @@ class Navigation extends Component {
 			text: "ABOUT",
 		},	{
 			to: "/gallery",
-			text: "GALLERY",
+			text: "WATCHES",
 		}, {
 			to: "/cart",
 			text: "CART",
@@ -26,15 +26,15 @@ class Navigation extends Component {
 			< Menu >
 				< Menu.Menu>
 					<Menu.Item position="left">
-						<Link to="/" className="Nav-Link-Home" activeClassName= "is-active">
+						<Link to="/" className="Nav-Link-Home">
 							ODYSSEY TIME
 						</Link>
 					</Menu.Item>
 				</Menu.Menu>
 				< Menu.Menu position= "right">
-					{links.map((link) => {
+					{links.map((link, index) => {
 						return (
-							<Menu.Item>
+							<Menu.Item key= {index}>
 								<NavLink
 									key= {link.to}
 									to= {link.to}

@@ -5,7 +5,7 @@ import Navigation from "components/Navigation";
 import Home from "pages/Home";
 import About from "pages/About";
 import Gallery from "pages/Gallery";
-import Item from "pages/Item";
+import Product from "pages/Product";
 import Cart from "pages/Cart";
 import Checkout from "pages/Checkout";
 import Contact from "pages/Contact";
@@ -14,7 +14,19 @@ import PRODUCTS from "json/products.json";
 
 
 class App extends React.Component {
+	state = {
+		products: PRODUCTS,
+	};
+
+
+ 	_getProduct = (productId) => {
+		return this.state.products.reduce((prev, product) => {
+				return product.id === productId ? product : prev;
+		});
+	}
+
 	render() {
+		const { products } = this.state;
 		return (
 			<BrowserRouter>
 				<div>
@@ -22,8 +34,21 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path ="/" component = {Home}/>
 						<Route exact path = "/about" component = {About}/>
-						<Route exact path = "/gallery" component = {Gallery}/>
-						<Route exact path = "/item/:itemId" component = {Item}/>
+						<Route exact path = "/gallery" render = {(props) => {
+						return (
+							<Gallery
+								products = {products}
+						/>
+					)
+				}}/>
+						<Route exact path = "/product/:productId" component = {(props) => {
+							return (
+								<Product
+									product = {this._getProduct(+props.match.params.productid)}
+									productId= {props.match.params.productid}
+								/>
+							)
+						}}/>
 						<Route exact path = "/cart" component = {Cart}/>
 						<Route exact path = "/checkout" component = {Checkout}/>
 						<Route exact path = "/contact" component = {Contact}/>
