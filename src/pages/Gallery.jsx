@@ -6,15 +6,14 @@ import { Link } from "react-router-dom";
 class Gallery extends Component {
 	render() {
 		const { products } = this.props;
-		console.log(products);
 		return (
 			<Grid centered>
     		<Grid.Column width={12}>
 					<div className = "Gallery">
-						{products.map((product, index) => {
+						{products.map((product) => {
 							return [
 								<div className = "gallery-item">
-									<Link to= {`/product/${index}`}>
+									<Link key = {product.id} to= {`/product/${product.id}`}>
 										<h3 className = "gallery-name"> {product.name}</h3>
 									</Link>
 										 <img className= "gallery-image-main" src= {product.images[0].large}/>

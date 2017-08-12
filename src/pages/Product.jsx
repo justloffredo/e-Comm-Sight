@@ -4,12 +4,18 @@ import React, { Component } from "react";
 
 
 class Product extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	_handleClick = (productId) => {
+		this.props.addToCart(this.props.product.id);
+
+};
 
 	render() {
 		const { product } = this.props;
-		console.log(product);
-		console.log(Grid);
-		console.log(List.produ);
+
 		return (
 			<Grid centered>
 				<Grid.Column width={12}>
@@ -20,9 +26,7 @@ class Product extends Component {
 							<img className="product-image-main" src ={product.images[0].medium}/>
 							<img className="product-image-band" src ={product.images[2].medium}/>
 						</div>
-						<div className="product-price">
-							<p> ${product.price} </p>
-						</div>
+
 						<div className="product-description">
 							<p>{product.description}</p>
 						</div>
@@ -37,9 +41,13 @@ class Product extends Component {
 								)}
 							</List>
 						</div>
-						<div className="product-buy-button">
-							<Button floated="right"> BUY </Button>
+						<div className="product-price">
+							<p> ${product.price} </p>
 						</div>
+						<div className="product-buy-button">
+							<Button onClick = {this._handleClick}> ADD TO CART </Button>
+						</div>
+
 					</div>
 				</Grid.Column>
 			</Grid>
