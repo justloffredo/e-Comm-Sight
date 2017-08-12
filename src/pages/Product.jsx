@@ -8,6 +8,8 @@ class Product extends Component {
 		super(props);
 	}
 
+
+
 	_handleClick = (productId) => {
 		this.props.addToCart(this.props.product.id);
 
@@ -45,7 +47,7 @@ class Product extends Component {
 							<p> ${product.price} </p>
 						</div>
 						<div className="product-buy-button">
-							<Button onClick = {this._handleClick}> ADD TO CART </Button>
+							<Button value = {product.id} onClick = {this._handleClick}> ADD TO CART </Button>
 						</div>
 
 					</div>
