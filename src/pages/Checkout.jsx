@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+const CheckoutForm = require("../components/CheckoutForm");
 
 class Checkout extends Component {
 	render() {
-		return (
-			<div>
-				<h1> This is the Checkout Page!</h1>
+			return (
+			<div className="App">
+				<CheckoutForm/>
 			</div>
 		);
 	}
