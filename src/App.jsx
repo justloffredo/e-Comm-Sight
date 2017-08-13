@@ -36,7 +36,7 @@ class App extends React.Component {
 			],
 			cartTotalItems: cart.length + 1,
 		});
-		console.log(cart);
+
 	}
 
 	// _removeFromCart = (itemId) =>{

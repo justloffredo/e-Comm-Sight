@@ -12,10 +12,17 @@ class Cart extends Component {
 	render() {
 		const { cart } = this.props;
 
+
+		const totalPrice = cart.reduce(function(prev, item) {
+			return prev + parseFloat(item.price);
+		},0);
+
+
+
+
 		return (
 			<Grid centered>
     		<Grid.Column width={12}>
-					<div className="app">
 						<h1>Cart</h1>
 						<List>
 							{cart.map((item) => {
@@ -23,20 +30,19 @@ class Cart extends Component {
 									<List.Item>
 										<div className="cart-items">
 											<h1 className="cart-item-name">{item.name}</h1>
-												 <img className= "cart-item-image" src= {item.images[0].small}/>
+											<img className= "cart-item-image" src= {item.images[0].small}/>
 											<h3 className="cart-item-price">{item.price}</h3>
 										</div>
 									</List.Item>
 								);
 							})}
 						</List>
-					</div>
 					<div className="cart-checkout-button">
 						<Link to= "/checkout">
 							<Button> CHECKOUT </Button>
 						</Link>
 					</div>
-
+					<p className="cart-total-price">{totalPrice}</p>
 				</Grid.Column>
 			</Grid>
 		);

@@ -87,7 +87,7 @@ class CheckoutForm extends Component {
 							placeholder='State'
 							onChange={this._handleChange}
 							value = {userState}/>
-						<Form.Inpu
+						<Form.Input
 							name= "zipCode"
 							label='Zip Code'
 							placeholder='Zip Code'

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-const CheckoutForm = require("../components/CheckoutForm");
+import CheckoutForm from "../components/CheckoutForm";
 
 class Checkout extends Component {
 	render() {
