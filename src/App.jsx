@@ -36,7 +36,7 @@ class App extends React.Component {
 			],
 			cartTotalItems: cart.length + 1,
 		});
-		console.log(cart);
+
 	}
 
 	// _removeFromCart = (itemId) =>{
@@ -81,7 +81,12 @@ class App extends React.Component {
 								/>
 							);
 						}}/>
-						<Route exact path = "/checkout" component = {Checkout}/>
+						<Route exact path = "/checkout" render = {(props) => {
+							return (
+								<Checkout
+								/>
+							);
+						}}/>
 						<Route exact path = "/contact" component = {Contact}/>
 					</Switch>
 				</div>

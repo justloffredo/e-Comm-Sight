@@ -20,7 +20,7 @@ class Navigation extends Component {
 			text: "CONTACT",
 		}, {
 			to: "/cart",
-			text: "CART",
+			text: "CART" + this.props.cartTotalItems,
 		}];
 
 		return (
