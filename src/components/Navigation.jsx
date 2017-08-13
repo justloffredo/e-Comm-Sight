@@ -8,6 +8,7 @@ import { NavLink, Link } from "react-router-dom";
 
 class Navigation extends Component {
 	render() {
+
 		const links = [{
 			to: "/about",
 			text: "ABOUT",
@@ -15,11 +16,11 @@ class Navigation extends Component {
 			to: "/gallery",
 			text: "WATCHES",
 		}, {
-			to: "/cart",
-			text: "CART",
-		}, {
 			to: "/contact",
 			text: "CONTACT",
+		}, {
+			to: "/cart",
+			text: "CART",
 		}];
 
 		return (
@@ -45,7 +46,9 @@ class Navigation extends Component {
 							</Menu.Item>
 						);
 					})}
-				</Menu.Menu>
+					<span className = "nav-cartTotalItems">{this.props.cartTotalItems}</span>
+					</Menu.Menu>
+
 			</Menu>
 		);
 	}

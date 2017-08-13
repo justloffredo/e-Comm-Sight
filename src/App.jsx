@@ -16,6 +16,8 @@ import PRODUCTS from "json/products.json";
 class App extends React.Component {
 	state = {
 		products: PRODUCTS,
+		cart: [],
+		cartTotalItems : 0,
 	};
 
 
@@ -25,31 +27,60 @@ class App extends React.Component {
 		});
 	}
 
+	_addToCart = (productId) => {
+		const { cart, products } = this.state;
+		this.setState({
+			cart: [
+				...cart,
+				this._getProduct(productId),
+			],
+			cartTotalItems: cart.length + 1,
+		});
+		console.log(cart);
+	}
+
+	// _removeFromCart = (itemId) =>{
+	// 	const { cart, items } = this.state;
+	// 	this.setState({
+	// 		cart: [
+	// 			...cart.
+	//
+	// 		]
+	// 	})
+	// }
+
 	render() {
-		const { products } = this.state;
+		const { products, cart, cartTotalItems } = this.state;
 		return (
 			<BrowserRouter>
 				<div>
-					<Navigation/>
+					<Navigation cartTotalItems = {this.state.cartTotalItems}/>
 					<Switch>
 						<Route exact path ="/" component = {Home}/>
 						<Route exact path = "/about" component = {About}/>
 						<Route exact path = "/gallery" render = {(props) => {
-						return (
-							<Gallery
-								products = {products}
-						/>
-					)
-				}}/>
-						<Route exact path = "/product/:productId" component = {(props) => {
+							return (
+								<Gallery
+									products = {products}
+								/>
+							);
+						}}/>
+						<Route exact path = "/product/:productId" render = {(props) => {
 							return (
 								<Product
-									product = {this._getProduct(+props.match.params.productid)}
-									productId= {props.match.params.productid}
+									product = {this._getProduct(props.match.params.productId)}
+									addToCart = {this._addToCart}
+
 								/>
-							)
+							);
 						}}/>
-						<Route exact path = "/cart" component = {Cart}/>
+						<Route exact path = "/cart" render = {(props) => {
+							return (
+								<Cart
+									cart = {cart}
+								/>
+							);
+						}}/>
 						<Route exact path = "/checkout" component = {Checkout}/>
 						<Route exact path = "/contact" component = {Contact}/>
 					</Switch>
