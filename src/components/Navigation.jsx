@@ -20,7 +20,7 @@ class Navigation extends Component {
 			text: "CONTACT",
 		}, {
 			to: "/cart",
-			text: "CART" + this.props.cartTotalItems,
+			text: "CART" + " " + this.props.cartTotalItems,
 		}];
 
 		return (
@@ -46,7 +46,6 @@ class Navigation extends Component {
 							</Menu.Item>
 						);
 					})}
-					<span className = "nav-cartTotalItems">{this.props.cartTotalItems}</span>
 					</Menu.Menu>
 
 			</Menu>

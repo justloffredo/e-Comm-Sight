@@ -6,21 +6,23 @@ class Cart extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			cartTotalItems: 0,
 		};
 	}
 
 	render() {
+		const { cartTotalItems } = this.props;
 		const { cart } = this.props;
-
 
 		const totalPrice = cart.reduce(function(prev, item) {
 			return prev + parseFloat(item.price);
 		},0);
 
-
-
+		console.log(cartTotalItems);
+		if (cartTotalItems > 0) {
 
 		return (
+
 			<Grid centered>
     		<Grid.Column width={12}>
 						<h1>Cart</h1>
@@ -42,10 +44,24 @@ class Cart extends Component {
 							<Button> CHECKOUT </Button>
 						</Link>
 					</div>
-					<p className="cart-total-price">{totalPrice}</p>
+					<div className="spacer"></div>
+					<div className="spacer"></div>
+					<p className="cart-total-price">Total Price {totalPrice}</p>
 				</Grid.Column>
 			</Grid>
 		);
+	}
+		else {
+			return (
+			<Grid centered>
+    		<Grid.Column width={12}>
+						<h1>YOUR CART IS EMPTY!!</h1>
+
+					<p className="cart-total-price">Total Price {totalPrice}</p>
+				</Grid.Column>
+			</Grid>
+		);
+		}
 	}
 }
 

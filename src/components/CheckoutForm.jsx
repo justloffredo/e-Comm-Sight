@@ -52,6 +52,7 @@ class CheckoutForm extends Component {
 		const city = this.state;
 		const userState = this.state;
 		const zipCode = this.state;
+		const error  = this.state;
 
 		return (
 			<Segment inverted>
@@ -62,38 +63,39 @@ class CheckoutForm extends Component {
 							label='First name'
 							placeholder='First name'
 							onChange={this._handleChange}
-							value = {firstName} />
+							 />
 		        <Form.Input
 							name = "lastName"
 							label='Last name'
 							placeholder='Last name'
 							onChange={this._handleChange}
-							value = {lastName}/>
+							/>
 						<Form.Input
 							name = "addressStreet"
 							label='Street Address'
 							placeholder='Street Address'
 							onChange={this._handleChange}
-							value = {addressStreet}/>
+							/>
 						<Form.Input
 							name = "city"
 							label='City'
 							placeholder='City'
 							onChange={this._handleChange}
-							value = {city}/>
+							/>
 						<Form.Input
 							name= "state"
 							label='State'
 							placeholder='State'
 							onChange={this._handleChange}
-							value = {userState}/>
+							/>
 						<Form.Input
 							name= "zipCode"
 							label='Zip Code'
 							placeholder='Zip Code'
 							onChange={this._handleChange}
-							value = {zipCode}/>
+							/>
 		      </Form.Group>
+					{error && <div className = "error">{error}</div>}
 		      <Button type='submit'>Submit</Button>
 		    </Form>
 		  </Segment>
