@@ -2,8 +2,13 @@ import "./gallery.scss";
 import { Grid, Item, Rating } from "semantic-ui-react";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { getAll } from "actions/products";
+import { connect } from "react-redux";
 
 class Gallery extends Component {
+	componentDidMount() {
+		this.props.getAll();
+	}
 	render() {
 		const { products } = this.props;
 		return (
@@ -30,4 +35,12 @@ class Gallery extends Component {
 	}
 }
 
-export default Gallery;
+
+// Connect state to INITIAL_STATE of products reducer
+function mapStateToProps(state, props) {
+	return {
+		products: state.products.products,
+	};
+}
+
+export default connect(mapStateToProps, { getAll }) (Gallery);

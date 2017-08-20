@@ -1,6 +1,10 @@
 import "./App.scss";
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import reduxThunk from "redux-thunk";
+import reducers from "reducers";
 import Navigation from "components/Navigation";
 import Home from "pages/Home";
 import About from "pages/About";
@@ -9,23 +13,24 @@ import Product from "pages/Product";
 import Cart from "pages/Cart";
 import Checkout from "pages/Checkout";
 import Contact from "pages/Contact";
-import PRODUCTS from "json/products.json";
+import Success from "pages/Success";
+import FourOFour from "pages/404";
 
-
+const store = createStore(reducers, applyMiddleware(reduxThunk));
 
 class App extends React.Component {
 	state = {
-		products: PRODUCTS,
+		// products: PRODUCTS,
 		cart: [],
 		cartTotalItems : 0,
 	};
 
 
- 	_getProduct = (productId) => {
-		return this.state.products.reduce((prev, product) => {
-				return product.id === productId ? product : prev;
-		});
-	}
+ // 	_getProduct = (productId) => {
+	// 	return this.state.products.reduce((prev, product) => {
+	// 			return product.id === productId ? product : prev;
+	// 	});
+	// }
 
 	_addToCart = (productId) => {
 		const { cart, products } = this.state;
@@ -52,28 +57,15 @@ class App extends React.Component {
 	render() {
 		const { products, cart, cartTotalItems } = this.state;
 		return (
+			<Provider store={store}>
 			<BrowserRouter>
 				<div>
 					<Navigation cartTotalItems = {this.state.cartTotalItems}/>
 					<Switch>
 						<Route exact path ="/" component = {Home}/>
 						<Route exact path = "/about" component = {About}/>
-						<Route exact path = "/gallery" render = {(props) => {
-							return (
-								<Gallery
-									products = {products}
-								/>
-							);
-						}}/>
-						<Route exact path = "/product/:productId" render = {(props) => {
-							return (
-								<Product
-									product = {this._getProduct(props.match.params.productId)}
-									addToCart = {this._addToCart}
-
-								/>
-							);
-						}}/>
+						<Route exact path = "/gallery" component= {Gallery}/>
+						<Route exact path = "/product/:productId" component = {Product}/>
 						<Route exact path = "/cart" render = {(props) => {
 							return (
 								<Cart
@@ -89,9 +81,11 @@ class App extends React.Component {
 							);
 						}}/>
 						<Route exact path = "/contact" component = {Contact}/>
+						<Route exact path = "/success" component = {Success}/>
 					</Switch>
 				</div>
 			</BrowserRouter>
+		</Provider>
 		);
 	}
 }

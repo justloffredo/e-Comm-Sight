@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "redux-thunk";
 
 class Contact extends Component {
 	render() {

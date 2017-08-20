@@ -1,23 +1,28 @@
 import "./product.scss";
 import { Grid, List, Button } from "semantic-ui-react";
 import React, { Component } from "react";
+import { getOne } from "actions/products";
+import { connect } from "react-redux";
 
 
 class Product extends Component {
-	constructor(props) {
-		super(props);
+	componentDidMount() {
+		this.props.getOne(this.props.productId);
 	}
 
 
-
-	_handleClick = (productId) => {
-		this.props.addToCart(this.props.product.id);
-
-};
+// 	_handleClick = (productId) => {
+// 		this.props.addToCart(this.props.product.id);
+//
+// };
 
 	render() {
 		const { product } = this.props;
 
+		if (!product) {
+			return <p>Loading...</p>;
+		}
+		else {
 		return (
 			<Grid centered>
 				<Grid.Column width={12}>
@@ -49,12 +54,20 @@ class Product extends Component {
 						<div className="product-buy-button">
 							<Button value = {product.id} onClick = {this._handleClick}> ADD TO CART </Button>
 						</div>
-
 					</div>
 				</Grid.Column>
 			</Grid>
 		);
 	}
 }
+}
 
-export default Product;
+function mapStateToProps(state, props) {
+	const { activeProduct } = state.products;
+	return {
+		productId: props.match.params.productId,
+		product: activeProduct,
+	};
+}
+
+export default connect(mapStateToProps, { getOne }) (Product);

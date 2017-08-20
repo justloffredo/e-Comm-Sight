@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, List, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { connect } from "redux-thunk";
 
 class Cart extends Component {
 	constructor(props) {
