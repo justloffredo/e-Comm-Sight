@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { Grid, List, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { connect } from "redux-thunk";
+import { connect } from "react-redux";
 
 class Cart extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			cartTotalItems: 0,
-		};
-	}
 
 	render() {
 		const { cartTotalItems } = this.props;
@@ -45,8 +39,6 @@ class Cart extends Component {
 							<Button> CHECKOUT </Button>
 						</Link>
 					</div>
-					<div className="spacer"></div>
-					<div className="spacer"></div>
 					<p className="cart-total-price">Total Price {totalPrice}</p>
 				</Grid.Column>
 			</Grid>
@@ -66,4 +58,12 @@ class Cart extends Component {
 	}
 }
 
-export default Cart;
+function mapStateToProps(state, props) {
+	return {
+		cartTotalItems: state.cart.cartTotalItems,
+		cart: state.cart.cart,
+	};
+}
+
+
+export default connect (mapStateToProps) (Cart);

@@ -19,11 +19,11 @@ import FourOFour from "pages/404";
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 
 class App extends React.Component {
-	state = {
-		// products: PRODUCTS,
-		cart: [],
-		cartTotalItems : 0,
-	};
+	// state = {
+	// 	products: PRODUCTS,
+	// 	cart: [],
+	// 	cartTotalItems : 0,
+	// };
 
 
  // 	_getProduct = (productId) => {
@@ -32,17 +32,17 @@ class App extends React.Component {
 	// 	});
 	// }
 
-	_addToCart = (productId) => {
-		const { cart, products } = this.state;
-		this.setState({
-			cart: [
-				...cart,
-				this._getProduct(productId),
-			],
-			cartTotalItems: cart.length + 1,
-		});
-
-	}
+	// _addToCart = (productId) => {
+	// 	const { cart, products } = this.state;
+	// 	this.setState({
+	// 		cart: [
+	// 			...cart,
+	// 			this._getProduct(productId),
+	// 		],
+	// 		cartTotalItems: cart.length + 1,
+	// 	});
+	//
+	// }
 
 	// _removeFromCart = (itemId) =>{
 	// 	const { cart, items } = this.state;
@@ -55,25 +55,18 @@ class App extends React.Component {
 	// }
 
 	render() {
-		const { products, cart, cartTotalItems } = this.state;
+		// const { products, cart, cartTotalItems } = this.state;
 		return (
 			<Provider store={store}>
 			<BrowserRouter>
 				<div>
-					<Navigation cartTotalItems = {this.state.cartTotalItems}/>
+					<Navigation/>
 					<Switch>
 						<Route exact path ="/" component = {Home}/>
 						<Route exact path = "/about" component = {About}/>
 						<Route exact path = "/gallery" component= {Gallery}/>
 						<Route exact path = "/product/:productId" component = {Product}/>
-						<Route exact path = "/cart" render = {(props) => {
-							return (
-								<Cart
-									cart = {cart}
-									cartTotalItems = {cartTotalItems}
-								/>
-							);
-						}}/>
+						<Route exact path = "/cart" component = {Cart}/>
 						<Route exact path = "/checkout" render = {(props) => {
 							return (
 								<Checkout

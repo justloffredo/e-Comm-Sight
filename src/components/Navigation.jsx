@@ -2,12 +2,15 @@ import "./Navigation.scss";
 import React, { Component } from "react";
 import { Menu } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 
 
 
 class Navigation extends Component {
 	render() {
+		console.log(this.props);
+		const { cartTotalItems } = this.props;
 
 		const links = [{
 			to: "/about",
@@ -20,7 +23,7 @@ class Navigation extends Component {
 			text: "CONTACT",
 		}, {
 			to: "/cart",
-			text: "CART" + " " + this.props.cartTotalItems,
+			text: "CART" + " " + cartTotalItems,
 		}];
 
 		return (
@@ -53,4 +56,10 @@ class Navigation extends Component {
 	}
 }
 
-export default Navigation;
+function mapStateToProps(state, props) {
+	return {
+		cartTotalItems: state.cart.cartTotalItems,
+	};
+}
+
+export default connect(mapStateToProps) (Navigation);
