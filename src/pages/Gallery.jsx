@@ -3,6 +3,7 @@ import { Grid, Item, Rating } from "semantic-ui-react";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { getAll } from "actions/products";
+import Loader from "components/Loader.jsx";
 import { connect } from "react-redux";
 
 class Gallery extends Component {
@@ -10,8 +11,19 @@ class Gallery extends Component {
 		this.props.getAll();
 	}
 	render() {
-		const { products } = this.props;
-		return (
+		const { products, isLOADING, error } = this.props;
+		let content;
+
+		if (isLOADING) {
+			content = <Loader/>;
+		}
+
+		else if (!products) {
+			content = <div className = "Gallery-Error">{ error }</div>;
+		}
+
+		else {
+			content = (
 			<Grid centered>
     		<Grid.Column width={12}>
 					<div className = "Gallery">
@@ -27,10 +39,16 @@ class Gallery extends Component {
 										 <h3 className= "gallery-price"> ${product.price}</h3>
 										 </div>
 									 </div>];
-						})}
-					</div>
-				</Grid.Column>
-			</Grid>
+							})}
+						</div>
+					</Grid.Column>
+				</Grid>
+			);
+		}
+		return (
+			<div className="Gallery">
+				{ content }
+			</div>
 		);
 	}
 }
@@ -40,6 +58,8 @@ class Gallery extends Component {
 function mapStateToProps(state, props) {
 	return {
 		products: state.products.products,
+		isLOADING: state.products.isLOADING,
+		error: state.products.error,
 	};
 }
 
