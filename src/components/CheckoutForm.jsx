@@ -1,46 +1,37 @@
 import React, { Component } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
+import { connect } from "react-redux";
+import { submitOrder } from "actions/checkout.js";
 
 class CheckoutForm extends Component {
 	constructor(props) {
 		super(props); {
 			this.state = {
-				firstName: "",
-				lastName: "",
-				addressStreet: "",
+				name: "",
+				address: "",
 				city: "",
-				userState: "",
+				state: "",
 				zipCode: "",
 				error: null,
 			};
 		}
 	}
 
+	// handleUpdateInput = (name) => {
+	//   this.setState({ [name]: event.target.value }) // event.target = undefined
+	// }
 	_handleChange = (ev) => {
-		this.setState({ [ev.target.name]: ev.target.value });
-	};
+		this.setState({
+			[ev.target.name]: [ev.target.value].toString() });
+	}
 
 	_handleSubmit = (ev) => {
 		ev.preventDefault();
-
-		const { Name, addressStreet, city, zipCode } = this.state;
-		const error = (Name === "" || addressStreet === "" || city === "" || zipCode === "") &&  "One or more of your fields is blank";
-
-
-		(!Name || !addressStreet || !city || !zipCode) || this.props.onSubmit({
-
-			firstName: this.state.firstName,
-			lastName: this.state.lastName,
-			addressStreet: this.state.addressStreet,
-			userState: this.state.state,
-			zipCode: this.state.zipCode,
-		});
-
-		this.setState({ firstName: "", lastName: "", addressStreet: "", city: "", userState: "", zipCode: "", error });
-	};
+		this.props.submitOrder(this.state);
+	}
 
 	render() {
-		const { Name, addressStreet, zipCode, error  } = this.state;
+		const { name, address, zipCode, city, state, error, value  } = this.state;
 		const options = [
 			{ key:'AL', text:'Alabama', value:'AL' },
 			{ key:'AK', text:'Alaska', value:'AK' },
@@ -101,45 +92,58 @@ class CheckoutForm extends Component {
 		    <Form inverted onSubmit={this._handleSubmit}>
 		      <Form.Group widths='equal'>
 		        <Form.Input
-							name = "Name"
+							name = "name"
 							label='Full Name'
 							type= "text"
 							placeholder='Full Name'
 							onChange={this._handleChange}
-							 />
+							 required />
 						<Form.Input
-							name = "addressStreet"
+							name = "address"
 							label='Street Address'
 							placeholder='Street Address'
 							type= "text"
 							onChange={this._handleChange}
-						/>
+							required />
 						<Form.Input
 							name = "city"
 							label='City'
 							placeholder='City'
 							type= "text"
 							onChange={this._handleChange}
+							required
 						/>
-						<Form.Select
-							name= "state"
-							label='State'
-							placeholder='State'
-							options = {options}
-						/>
+						<div className="button-field">
+							<label name="State">State</label>
+							<select onChange={this._handleChange} name="state" >
+								{options.map((states) => {
+									return (
+										<option value={states.value}>{states.text}</option>
+									);
+								})}
+							</select>
+						</div>
 						<Form.Input
 							name= "zipCode"
 							label='Zip Code'
 							placeholder='Zip Code'
 							type= "text"
 							onChange={this._handleChange}
-						/>
+							required
+							/>
 		      </Form.Group>
-					{error && <div className = "error">{error}</div>}
-		      <Button type='submit'>Submit</Button>
+		      <Button type='submit' onSubmit= {this._handleSubmit} >Submit</Button>
 		    </Form>
 		  </Segment>
 		);
 	}
 }
-export default CheckoutForm;
+
+function mapStateToProps(state, props) {
+	return {
+		
+	};
+}
+
+
+export default connect(mapStateToProps, { submitOrder }) (CheckoutForm);

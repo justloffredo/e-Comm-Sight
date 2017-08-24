@@ -13,7 +13,6 @@ class Cart extends Component {
 			return prev + parseFloat(item.price);
 		},0);
 
-		console.log(cartTotalItems);
 		if (cartTotalItems > 0) {
 
 		return (

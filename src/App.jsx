@@ -14,7 +14,7 @@ import Cart from "pages/Cart";
 import Checkout from "pages/Checkout";
 import Contact from "pages/Contact";
 import Success from "pages/Success";
-import FourOFour from "pages/404";
+import FourOhFour from "pages/404";
 
 const store = createStore(reducers, applyMiddleware(reduxThunk));
 
@@ -75,6 +75,7 @@ class App extends React.Component {
 						}}/>
 						<Route exact path = "/contact" component = {Contact}/>
 						<Route exact path = "/success" component = {Success}/>
+						<Route exact path= "*" component={FourOhFour} />
 					</Switch>
 				</div>
 			</BrowserRouter>

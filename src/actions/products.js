@@ -32,11 +32,12 @@ export function getOne(productId) {
 	return (dispatch) => {
 		dispatch({ type: "LOADING_SELECTED_PRODUCT" });
 		API.get(`/products/${productId}`).then((res) => {
-				console.log("getOne(product) action/function  res.data: ", res.data.product);
+				console.log("getOne(product) action/function  res.data: ", res.data.product, res.data.product.id);
 			if (res.data) {
 				dispatch({
 					type: "SELECTED_PRODUCT_LOAD_SUCCESS",
 				 	product: res.data.product,
+					productId: res.data.product.id,
 				});
 			}
 			else {

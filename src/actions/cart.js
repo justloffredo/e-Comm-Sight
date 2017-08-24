@@ -6,6 +6,7 @@ export function addToCart(product) {
 			dispatch({
 				type: "ADD_TO_CART",
 				product,
+				productId: product.id,
 			});
 		}
 		else {
