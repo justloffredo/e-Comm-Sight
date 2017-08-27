@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import "./checkoutForm.scss";
+import { Button, Form, Segment, Grid } from 'semantic-ui-react';
 import { connect } from "react-redux";
 import { submitOrder } from "actions/checkout.js";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
 
 class CheckoutForm extends Component {
 	constructor(props) {
@@ -27,11 +31,13 @@ class CheckoutForm extends Component {
 
 	_handleSubmit = (ev) => {
 		ev.preventDefault();
+		const { cart, cartTotalItems } = this.props;
 		this.props.submitOrder(this.state);
 	}
 
 	render() {
-		const { name, address, zipCode, city, state, error, value  } = this.state;
+		const { name, address, zipCode, city, state, value } = this.state;
+		const { error, orderSuccess, orderFailure, cart, cartTotalItems } = this.props;
 		const options = [
 			{ key:'AL', text:'Alabama', value:'AL' },
 			{ key:'AK', text:'Alaska', value:'AK' },
@@ -87,25 +93,45 @@ class CheckoutForm extends Component {
 			{ key:'WY', text:'Wyoming', value:'WY' },
 		];
 
+		let message;
+
+		if (orderSuccess) {
+			message = (<div className = "OrderFormSuccess">
+				<Link to= "/gallery"> <p>Your Order has been submitted successfully! Please feel free to continue shopping here if you'd like.</p></Link>
+			</div>);
+		}
+
+		if (orderFailure) {
+			message = <div className = "OrderFormFailure"> { error } </div>;
+		}
+
+
+
 		return (
+			<Grid centered>
+			<Grid.Column width={6}>
 			<Segment inverted>
 		    <Form inverted onSubmit={this._handleSubmit}>
-		      <Form.Group widths='equal'>
-		        <Form.Input
+		      <Form.Group>
+		        <Form.Input className="form-input-name"
 							name = "name"
 							label='Full Name'
 							type= "text"
 							placeholder='Full Name'
 							onChange={this._handleChange}
 							 required />
-						<Form.Input
+					</Form.Group>
+					<Form.Group>
+						<Form.Input className = "form-input-address"
 							name = "address"
 							label='Street Address'
 							placeholder='Street Address'
 							type= "text"
 							onChange={this._handleChange}
 							required />
-						<Form.Input
+					</Form.Group>
+					<Form.Group>
+						<Form.Input className = "form-input-city"
 							name = "city"
 							label='City'
 							placeholder='City'
@@ -113,6 +139,8 @@ class CheckoutForm extends Component {
 							onChange={this._handleChange}
 							required
 						/>
+					</Form.Group>
+					<Form.Group>
 						<div className="button-field">
 							<label name="State">State</label>
 							<select onChange={this._handleChange} name="state" >
@@ -123,25 +151,138 @@ class CheckoutForm extends Component {
 								})}
 							</select>
 						</div>
-						<Form.Input
+					</Form.Group>
+					<Form.Group>
+						<Form.Input className="form-input-zipcode"
 							name= "zipCode"
 							label='Zip Code'
 							placeholder='Zip Code'
 							type= "text"
 							onChange={this._handleChange}
-							required
-							/>
+							required/>
+					</Form.Group>
+					<Form.Group>
+						<Button className= "checkout-button" type='submit' onSubmit= {this._handleSubmit} >Submit</Button>
 		      </Form.Group>
-		      <Button type='submit' onSubmit= {this._handleSubmit} >Submit</Button>
-		    </Form>
+
+				 </Form>
+				 <div className="Order-Message">
+					  { message }
+				 </div>
 		  </Segment>
+		</Grid.Column>
+	</Grid>
 		);
 	}
 }
 
+CheckoutForm.propTypes = {
+	error: PropTypes.string,
+	orderSuccess: PropTypes.bool,
+	orderFailure: PropTypes.bool,
+	cart: PropTypes.arrayOf(PropTypes.shape({
+		product: PropTypes.shape({
+			id: PropTypes.number,
+			name: PropTypes.string,
+			category: PropTypes.string,
+			description: PropTypes.string,
+			rating: PropTypes.number,
+			price: PropTypes.string,
+			specs: PropTypes.arrayOf(PropTypes.shape({
+				0: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				1: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				2: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				3: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				4: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				5: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				6: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				7: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				8: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				9: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				10: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				11: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				12: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				13: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				14: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+			})),
+			images: PropTypes.arrayOf(PropTypes.shape({
+				0: PropTypes.shape({
+					original: PropTypes.string,
+					small: PropTypes.string,
+					medium: PropTypes.string,
+					large: PropTypes.string,
+				}),
+				1: PropTypes.shape({
+					original: PropTypes.string,
+					small: PropTypes.string,
+					medium: PropTypes.string,
+					large: PropTypes.string,
+				}),
+				2: PropTypes.shape({
+					original: PropTypes.string,
+					small: PropTypes.string,
+					medium: PropTypes.string,
+					large: PropTypes.string,
+				}),
+			})),
+		}),
+	})),
+	cartTotalItems: PropTypes.number,
+};
+
 function mapStateToProps(state, props) {
 	return {
-		
+		error: state.checkout.error,
+		orderSuccess: state.checkout.orderSuccess,
+		orderFailure: state.checkout.orderFailure,
+		cart: state.cart.cart,
+		cartTotalItems: state.cart.cartTotalItems,
+
 	};
 }
 

@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { getOne } from "actions/products";
 import { addToCart } from "actions/cart";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Loader from "components/Loader.jsx";
 
 
@@ -17,7 +18,7 @@ class Product extends Component {
 		this.props.addToCart(this.props.product);
 	};
 	render() {
-		const { product, isLOADING, error, cart, cartTotalItems } = this.props;
+		const { product, isLOADING, error, cart } = this.props;
 		let content;
 
 		if (isLOADING) {
@@ -34,7 +35,7 @@ class Product extends Component {
 						<div className="product">
 							<h1 className= "product-name">{product.name} </h1>
 							<div className="product-images">
-								<img className="product-image-side" src ={product.images[1].medium}/>
+								<img className="product-image-side" src ={product.images[1].large}/>
 								<img className="product-image-main" src ={product.images[0].medium}/>
 								<img className="product-image-band" src ={product.images[2].medium}/>
 							</div>
@@ -73,6 +74,102 @@ class Product extends Component {
 	}
 }
 
+Product.propTypes = {
+	productId: PropTypes.string.isRequired,
+	product: PropTypes.shape({
+		id: PropTypes.integer,
+		name: PropTypes.string,
+		category: PropTypes.string,
+		description: PropTypes.string,
+		rating: PropTypes.integer,
+		price: PropTypes.string,
+		specs: PropTypes.arrayOf(PropTypes.shape({
+			0: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			1: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			2: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			3: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			4: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			5: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			6: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			7: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			8: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			9: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			10: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			11: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			12: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			13: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+			14: PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+			}),
+		})),
+	}),
+	images: PropTypes.arrayOf(PropTypes.shape({
+		0: PropTypes.shape({
+			original: PropTypes.string,
+			small: PropTypes.string,
+			medium: PropTypes.string,
+			large: PropTypes.string,
+		}),
+		1: PropTypes.shape({
+			original: PropTypes.string,
+			small: PropTypes.string,
+			medium: PropTypes.string,
+			large: PropTypes.string,
+		}),
+		2: PropTypes.shape({
+			original: PropTypes.string,
+			small: PropTypes.string,
+			medium: PropTypes.string,
+			large: PropTypes.string,
+		}),
+	})),
+	error: PropTypes.string,
+	isLOADING: PropTypes.bool,
+};
+
 function mapStateToProps(state, props) {
 	const { activeProduct, isLOADING, error } = state.products;
 	return {
@@ -81,7 +178,6 @@ function mapStateToProps(state, props) {
 		isLOADING,
 		error,
 		cart: state.cart,
-		cartTotalItems: state.cart,
 	};
 }
 

@@ -13,7 +13,6 @@ import Product from "pages/Product";
 import Cart from "pages/Cart";
 import Checkout from "pages/Checkout";
 import Contact from "pages/Contact";
-import Success from "pages/Success";
 import FourOhFour from "pages/404";
 
 const store = createStore(reducers, applyMiddleware(reduxThunk));
@@ -67,14 +66,8 @@ class App extends React.Component {
 						<Route exact path = "/gallery" component= {Gallery}/>
 						<Route exact path = "/product/:productId" component = {Product}/>
 						<Route exact path = "/cart" component = {Cart}/>
-						<Route exact path = "/checkout" render = {(props) => {
-							return (
-								<Checkout
-								/>
-							);
-						}}/>
+						<Route exact path = "/checkout" component = {Checkout} />
 						<Route exact path = "/contact" component = {Contact}/>
-						<Route exact path = "/success" component = {Success}/>
 						<Route exact path= "*" component={FourOhFour} />
 					</Switch>
 				</div>

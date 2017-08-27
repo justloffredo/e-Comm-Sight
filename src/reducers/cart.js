@@ -1,6 +1,8 @@
 const INITIAL_STATE = {
 	cart: [],
 	cartTotalItems: 0,
+	cartIds: [],
+
 };
 function cartReducer(state = INITIAL_STATE, action) {
 	switch (action.type) {

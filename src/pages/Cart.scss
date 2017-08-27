@@ -1,0 +1,31 @@
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	box-sizing: border-box;
+	margin: 0 auto;
+	font-family: 'Optima';
+	line-height: 1.5;
+	padding: 48px 12px;
+ background-size: cover;
+
+}
+
+p {
+	font-size: 20px;
+}
+
+.cart-checkout-button {
+	display: block;
+	margin: auto;
+	width: 100%;
+}
+
+.cart-item-image {
+	display: block;
+	margin: auto;
+	width: 200px;
+	height: 250px;	
+	padding-bottom: 10px;
+}

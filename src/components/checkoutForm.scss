@@ -1,0 +1,35 @@
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	box-sizing: border-box;
+	margin: 0 auto;
+	font-family: 'Optima';
+	line-height: 1.5;
+	padding: 48px 12px;
+ background-size: cover;
+
+}
+.orderMessage {
+		color: #FFF;
+		display: block;
+		text-align: center;
+}
+
+.form-input-name {
+	width: 100%;
+}
+
+.checkout-button {
+	width: 100%;
+}
+
+.form-input-address {
+	width: 100%;
+}
+
+.form-input-city {
+	width: 100%;
+}

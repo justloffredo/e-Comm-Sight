@@ -1,0 +1,16 @@
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	box-sizing: border-box;
+	margin: 0 auto;
+	font-family: 'Optima';
+	line-height: 1.5;
+	padding: 48px 12px;
+ background-size: cover;
+
+}
+h5 {
+	text-align: center;
+}

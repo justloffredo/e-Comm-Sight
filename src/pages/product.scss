@@ -1,3 +1,16 @@
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	box-sizing: border-box;
+	margin: 0 auto;
+	font-family: 'Optima';
+	line-height: 1.5;
+	padding: 48px 12px;
+ background-size: cover;
+
+}
 .product {
 	padding-top: 50px;
 }
@@ -50,4 +63,8 @@
 	display: inline-block;
 	font-size: 25px;
 	padding-top: 20px;
+}
+.product-buy-button {
+float: right;
+padding-top: 20px;
 }

@@ -35,7 +35,7 @@ export function submitOrder(order, cartItemIds) {
 
 					dispatch({
 						type: "SUBMIT_ORDER_FAILURE",
-						error: res.error,
+						error: res.error.message,
 					});
 				}
 			})

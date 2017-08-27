@@ -15,7 +15,7 @@ export function getAll() {
 			else {
 				dispatch({
 					type: "PRODUCTS_CANT_LOAD",
-					error: res.error,
+					error: res.error.message,
 				});
 			}
 		}).catch((error) => {

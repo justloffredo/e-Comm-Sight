@@ -1,17 +1,20 @@
 const INITIAL_STATE = {
 	order: {},
-	error: [],
+	orderSuccess: false,
+	orderFailure: false,
+	error: null,
 
 };
 
 
 function checkoutReduced(state = INITIAL_STATE, action) {
 	switch (action.type) {
-
-	case "SUBMIT_ORDER_SUCCESS":
+		case "SUBMIT_ORDER_SUCCESS":
 		return {
 			...state,
 			order: action.order,
+			orderSuccess: true,
+			orderFailure: false,
 		};
 
 
@@ -22,6 +25,8 @@ function checkoutReduced(state = INITIAL_STATE, action) {
 		return {
 			...state,
 			error: action.error,
+			orderSuccess: false,
+			orderFailure: true,
 		};
 
 	default:
