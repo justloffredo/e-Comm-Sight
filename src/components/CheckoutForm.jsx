@@ -166,7 +166,7 @@ class CheckoutForm extends Component {
 		      </Form.Group>
 
 				 </Form>
-				 <div className="Order-Message">
+				 <div className="order-message">
 					  { message }
 				 </div>
 		  </Segment>
