@@ -50,3 +50,15 @@
 
 * Read the [Wiki](https://github.com/wbobeirne/nycda-ecommerce-server/wiki) for
 more information.
+
+## Getting Started
+
+You must be on a Node version greater than 6 to use this. Once you've npm
+installed, there are only two commands:
+
+* `npm run start` - Runs the development server (Specify port with PORT, default 7000)
+* `npm run build` - Builds the production version, which goes into `dist`
+
+Heroku Address for eComm Build (Oddyssey Time)
+
+https://oddyssee-time.herokuapp.com/
