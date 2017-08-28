@@ -8,8 +8,18 @@ body {
 	font-family: 'Optima';
 	line-height: 1.5;
 	padding: 48px 12px;
+	background-image: url();
  background-size: cover;
 
+}
+
+.about {
+	box-shadow: 7.5px 7.5px 3.75px #888888;
+	border: 100%;
+	background-color: #edf2f2;
+	padding: 80px;
+	width: 100%;
+	margin: auto;
 }
 
 h1 {

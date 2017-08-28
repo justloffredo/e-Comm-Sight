@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Grid } from "semantic-ui-react";
 import "./Contact.scss";
 
 class Contact extends Component {
 	render() {
 		return (
-			<div>
+			<Grid centered>
+			<Grid.Column width={8}>
+			<div className="contact">
 				<h3> Need Help?</h3>
 				<br></br>
 				<p>Email us at</p>
@@ -21,6 +24,8 @@ class Contact extends Component {
 				<br></br>
 				<p>Please allow up to 48 hours for order processing.</p>
 			</div>
+		</Grid.Column>
+	</Grid>
 		);
 	}
 }

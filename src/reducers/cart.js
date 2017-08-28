@@ -1,8 +1,6 @@
 const INITIAL_STATE = {
 	cart: [],
 	cartTotalItems: 0,
-	cartIds: [],
-
 };
 function cartReducer(state = INITIAL_STATE, action) {
 	switch (action.type) {
@@ -18,6 +16,13 @@ function cartReducer(state = INITIAL_STATE, action) {
 		return {
 			...state,
 			error: action.error,
+	};
+
+	case "SUBMIT_ORDER_SUCCESS":
+	return {
+		...state,
+		cart: [],
+		cartTotalItems:0,
 	};
 	default:
 		return state;

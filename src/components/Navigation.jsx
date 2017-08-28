@@ -1,8 +1,9 @@
 import "./Navigation.scss";
 import React, { Component } from "react";
-import { Menu } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 
 
@@ -50,11 +51,15 @@ class Navigation extends Component {
 						);
 					})}
 					</Menu.Menu>
-
-			</Menu>
+				</Menu>
 		);
 	}
 }
+
+Navigation.propTypes = {
+	cartTotalItems: PropTypes.number,
+};
+
 
 function mapStateToProps(state, props) {
 	return {

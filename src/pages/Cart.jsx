@@ -49,8 +49,6 @@ class Cart extends Component {
 				<Grid centered>
     		<Grid.Column width={12}>
 						<p>Your cart is currently empty. Please try one of our fine watches.</p>
-
-						<p className="cart-total-price">Total Price $ {totalPrice.toFixed(2)}</p>
 					</Grid.Column>
 				</Grid>
 			);
